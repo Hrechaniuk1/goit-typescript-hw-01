@@ -14,7 +14,7 @@ async function fetchData<T>(url: string): Promise<T> {
     async function fetchData1<T>(url: string): Promise<T | undefined> {
           try {
             const response = await axios.get<T>(url);
-            return response.data;
+            return response;
           } catch (error) {
             throw new Error(`Error fetching from ${url}: ${error}`);
           }
