@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 // Який варіант більш корректний? Знайшов, що аксіос може контролювати за типом що повертається з сервера, чи правильно зрозумів і чи треба то робити, чи лишити контроль типу даних, що повертаються лише самій функції?
 
@@ -13,8 +13,8 @@ async function fetchData<T>(url: string): Promise<T> {
 
     async function fetchData1<T>(url: string): Promise<T | undefined> {
           try {
-            const response = await axios.get<T>(url);
-            return response;
+            const response: AxiosResponse<T> = await axios.get(url);
+            return response.data;
           } catch (error) {
             throw new Error(`Error fetching from ${url}: ${error}`);
           }
